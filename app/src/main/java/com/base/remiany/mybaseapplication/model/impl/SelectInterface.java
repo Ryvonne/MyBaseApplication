@@ -1,4 +1,4 @@
-package com.base.remiany.mybaseapplication;
+package com.base.remiany.mybaseapplication.model.impl;
 
 import java.util.List;
 

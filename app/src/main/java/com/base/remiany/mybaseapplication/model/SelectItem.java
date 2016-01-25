@@ -1,4 +1,6 @@
-package com.base.remiany.mybaseapplication;
+package com.base.remiany.mybaseapplication.model;
+
+import com.base.remiany.mybaseapplication.model.impl.SelectInterface;
 
 import java.util.List;
 
@@ -8,8 +10,14 @@ import java.util.List;
 public class SelectItem implements SelectInterface {
     String title;
     String key;
+    String value;
     List<SelectItem> mlist;
     int type;
+
+    public SelectItem(String key, String value) {
+        this.key = key;
+        this.value = value;
+    }
 
     public SelectItem(String title, int type) {
         this(title, title, null, type);
@@ -32,7 +40,7 @@ public class SelectItem implements SelectInterface {
 
     @Override
     public String getKey() {
-        return title;
+        return key;
     }
 
     @Override
@@ -67,5 +75,13 @@ public class SelectItem implements SelectInterface {
 
     public void setType(int type) {
         this.type = type;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 }

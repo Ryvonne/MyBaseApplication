@@ -36,6 +36,16 @@ public class Environment {
         return packageInfo;
     }
 
+    public static int getAndroidSDKVersion() {
+        int version = 0;
+        try {
+            version = Integer.valueOf(android.os.Build.VERSION.SDK);
+        } catch (NumberFormatException e) {
+            Log.e(e.toString());
+        }
+        return version;
+    }
+
     /**
      * 设备的唯一标识
      * <p/>

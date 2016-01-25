@@ -5,62 +5,102 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ListView
-        android:id="@+id/list_title"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/lightyellow"></ListView>
-
     <RelativeLayout
-        android:id="@+id/rl_view"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="match_parent"
-        android:background="@color/lightblue"
-        android:visibility="gone">
+        android:layout_alignParentRight="true">
 
         <ListView
-            android:id="@+id/list_select"
+            android:id="@+id/list_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/ll_bottom"></ListView>
+            android:layout_above="@+id/btn_search"
+            android:background="@color/lightyellow"></ListView>
 
         <RelativeLayout
-            android:id="@+id/rl_et"
+            android:id="@+id/rl_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/ll_bottom"
+            android:background="@color/lightblue"
             android:visibility="gone">
 
-            <EditText
-                android:id="@+id/et_select"
+            <ListView
+                android:id="@+id/list_select"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/ll_bottom"></ListView>
+
+            <RelativeLayout
+                android:id="@+id/rl_et"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/ll_bottom"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/et_select"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:background="@color/white"
+                    android:padding="3dp"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_date"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/ll_bottom"
+                android:visibility="gone">
+
+                <DatePicker
+                    android:id="@+id/datePicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:calendarViewShown="false"
+                    android:spinnersShown="true" />
+
+                <TimePicker
+                    android:id="@+id/timePicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/datePicker"
+                    android:layout_centerHorizontal="true"
+                    android:calendarViewShown="false"
+                    android:spinnersShown="true"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:background="@color/white"
-                android:padding="3dp"
-                android:textSize="20sp" />
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_confirm"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="确定" />
+
+                <Button
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="取消" />
+
+            </LinearLayout>
         </RelativeLayout>
 
-        <LinearLayout
-            android:id="@+id/ll_bottom"
+        <Button
+            android:id="@+id/btn_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btn_confirm"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="确定" />
-
-            <Button
-                android:id="@+id/btn_cancel"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="取消" />
-
-        </LinearLayout>
+            android:layout_alignParentBottom="true"
+            android:text="输出" />
     </RelativeLayout>
 </RelativeLayout>
