@@ -152,11 +152,11 @@ public class SearchHelper implements View.OnClickListener {
         for (String date : mDateList) {
             String key = date;
 
-            if (mMap.get(date) == null) {
+            if (mMap.get(date + DATE_TITLE_TAG) == null) {
                 Log.i("Map hasn't " + date + ",don't search this param");
                 continue;
             }
-            key = mMap.get(date).getKey();
+            key = mMap.get(date + DATE_TITLE_TAG).getKey();
 
             String start = map.get(date + DATE_START_TAG) == null ? null : mMap.get(date + DATE_START_TAG).getKey();
             String end = map.get(date + DATE_END_TAG) == null ? null : mMap.get(date + DATE_END_TAG).getKey();
@@ -166,7 +166,7 @@ public class SearchHelper implements View.OnClickListener {
                 if (!TextUtils.isEmpty(end)) {
                     searchdate += "|" + end;
                 }
-
+                
                 map.remove(date + DATE_TITLE_TAG);
                 map.remove(date + DATE_START_TAG);
                 map.remove(date + DATE_END_TAG);
@@ -176,11 +176,12 @@ public class SearchHelper implements View.OnClickListener {
 
             if (!TextUtils.isEmpty(end)) {
                 searchdate = end;
-                map.remove(date + DATE_TITLE_TAG);
-                map.remove(date + DATE_START_TAG);
-                map.remove(date + DATE_END_TAG);
                 map.put(date, searchdate);
             }
+
+            map.remove(date + DATE_TITLE_TAG);
+            map.remove(date + DATE_START_TAG);
+            map.remove(date + DATE_END_TAG);
         }
 
         for (String key : map.keySet()) {
@@ -219,8 +220,8 @@ public class SearchHelper implements View.OnClickListener {
             item = new SelectItem(title, key + DATE_TITLE_TAG, titleList, SPINNER_TYPE);
         }
         mTitles.add(item);
-        SelectItem startitem = new SelectItem(key + DATE_START_TAG, new ArrayList<SelectItem>(), DATE_TYPE);
-        SelectItem enditem = new SelectItem(key + DATE_END_TAG, new ArrayList<SelectItem>(), DATE_TYPE);
+        SelectItem startitem = new SelectItem("开始日期", key + DATE_START_TAG, new ArrayList<SelectItem>(), DATE_TYPE);
+        SelectItem enditem = new SelectItem("结束日期", key + DATE_END_TAG, new ArrayList<SelectItem>(), DATE_TYPE);
         mTitles.add(startitem);
         mTitles.add(enditem);
     }
