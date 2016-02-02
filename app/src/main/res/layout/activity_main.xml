@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/btn_search"
-            android:background="@color/lightyellow"></ListView>
+            android:background="@color/gray_light_backgroud"></ListView>
 
         <RelativeLayout
             android:id="@+id/rl_view"

@@ -11,8 +11,9 @@ public class SelectItem implements SelectInterface {
     String title;
     String key;
     String value;
-    List<SelectItem> mlist;
     int type;
+    int baccolor;//存储颜色，不为0时表示背景有特殊颜色
+    List<SelectItem> mlist;
 
     public SelectItem(String key, String value) {
         this.key = key;
@@ -83,5 +84,13 @@ public class SelectItem implements SelectInterface {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public int getBaccolor() {
+        return baccolor;
+    }
+
+    public void setBaccolor(int baccolor) {
+        this.baccolor = baccolor;
     }
 }

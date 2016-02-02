@@ -23,13 +23,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SearchHelper implements View.OnClickListener {
     Activity mContext;
     HashMap<String, SelectItem> mMap = new HashMap<String, SelectItem>();
     List<String> mDateList = new ArrayList<>();
     ListView lstTitle, lstSelect;
-    List<SelectItem> mTitles;
+    List<SelectItem> mTitles = new ArrayList<>();
     RelativeLayout rlLayout, rlEditView, rlDate;
     EditText etSelect;
     Button btnCancel, btnConfirm;
@@ -88,6 +89,15 @@ public class SearchHelper implements View.OnClickListener {
                 } else {
                     holder.setText(R.id.tv_valuve, item.getTitle());
                 }
+
+                int bacolor = info.getBaccolor();
+                if (bacolor == 1) {
+                    holder.setBackgroundResource(R.id.rl_main, R.color.gray_deep_backgroud);
+                } else if (bacolor == 2) {
+                    holder.setBackgroundResource(R.id.rl_main, R.color.gray_backgroud);
+                } else {
+                    holder.setBackgroundResource(R.id.rl_main, R.color.gray_light_backgroud);
+                }
             }
         };
 
@@ -142,7 +152,7 @@ public class SearchHelper implements View.OnClickListener {
         });
     }
 
-    void confirmMap() {
+    public Map<String, String> confirmMap() {
         HashMap<String, String> map = new HashMap<>();
         for (String key : mMap.keySet()) {
             String val = mMap.get(key).getKey();
@@ -166,7 +176,7 @@ public class SearchHelper implements View.OnClickListener {
                 if (!TextUtils.isEmpty(end)) {
                     searchdate += "|" + end;
                 }
-                
+
                 map.remove(date + DATE_TITLE_TAG);
                 map.remove(date + DATE_START_TAG);
                 map.remove(date + DATE_END_TAG);
@@ -184,17 +194,14 @@ public class SearchHelper implements View.OnClickListener {
             map.remove(date + DATE_END_TAG);
         }
 
-        for (String key : map.keySet()) {
-            Log.i(key + ":" + map.get(key));
-        }
+        return map;
     }
 
     void initTitles() {
-        mTitles = new ArrayList<>();
-        createType();
+        createName();
         createDate("日期", "test");
         createTime();
-        createName();
+        createType();
     }
 
     void createType() {
@@ -209,19 +216,22 @@ public class SearchHelper implements View.OnClickListener {
     void createDate(String title, String key) {
         mDateList.add(key);
         List<SelectItem> titleList = new ArrayList<>();
-        titleList.add(new SelectItem("预约时间", "fum_date", 1));
-        titleList.add(new SelectItem("执行时间", "book_date", 1));
-        mMap.put(key + DATE_TITLE_TAG, new SelectItem("预约时间", "fum_date", 1));
+//        titleList.add(new SelectItem("预约时间", "fum_date", 1));
+//        titleList.add(new SelectItem("执行时间", "book_date", 1));
 
         SelectItem item = null;
         if (titleList.size() == 0) {
             item = new SelectItem(title, key + DATE_TITLE_TAG, titleList, TEXT_TYPE);
         } else {
             item = new SelectItem(title, key + DATE_TITLE_TAG, titleList, SPINNER_TYPE);
+            mMap.put(key + DATE_TITLE_TAG, new SelectItem("预约时间", "fum_date", 1));
         }
+        item.setBaccolor(1);
         mTitles.add(item);
         SelectItem startitem = new SelectItem("开始日期", key + DATE_START_TAG, new ArrayList<SelectItem>(), DATE_TYPE);
+        startitem.setBaccolor(2);
         SelectItem enditem = new SelectItem("结束日期", key + DATE_END_TAG, new ArrayList<SelectItem>(), DATE_TYPE);
+        enditem.setBaccolor(2);
         mTitles.add(startitem);
         mTitles.add(enditem);
     }

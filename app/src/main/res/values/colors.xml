@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <color name="gray_backgroud">#494949</color>
+    <color name="gray_deep_backgroud">#3e3e3e</color>
+    <color name="gray_light_backgroud">#848484</color>
+</resources>

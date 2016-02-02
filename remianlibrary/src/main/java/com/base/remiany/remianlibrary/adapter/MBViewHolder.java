@@ -56,10 +56,15 @@ public class MBViewHolder {
 
     public void setBackgroundResource(int rid, int imgId) {
         View tv = findViewById(rid);
+        tv.setBackgroundResource(imgId);
+    }
+
+    public void setBackgroundColor(int rid, int color) {
+        View tv = findViewById(rid);
         if (!(tv instanceof ImageView)) {
             Log.e(TAG, "The View found by rid isn't ImageView");
         }
-        ((ImageView) tv).setBackgroundResource(imgId);
+        ((ImageView) tv).setBackgroundColor(color);
     }
 
     public void setVisibility(int rid, int vis) {
