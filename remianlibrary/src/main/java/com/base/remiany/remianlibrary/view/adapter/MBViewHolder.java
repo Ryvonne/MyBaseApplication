@@ -1,4 +1,4 @@
-package com.base.remiany.remianlibrary.adapter;
+package com.base.remiany.remianlibrary.view.adapter;
 
 import android.content.Context;
 import android.util.Log;

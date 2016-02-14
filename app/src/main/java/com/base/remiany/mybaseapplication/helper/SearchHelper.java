@@ -13,9 +13,9 @@ import android.widget.TimePicker;
 
 import com.base.remiany.mybaseapplication.R;
 import com.base.remiany.mybaseapplication.model.SelectItem;
-import com.base.remiany.remianlibrary.adapter.MBAdapter;
-import com.base.remiany.remianlibrary.adapter.MBViewHolder;
-import com.base.remiany.remianlibrary.assist.AnimationAssist;
+import com.base.remiany.remianlibrary.view.adapter.MBAdapter;
+import com.base.remiany.remianlibrary.view.adapter.MBViewHolder;
+import com.base.remiany.remianlibrary.app.assist.AnimationAssist;
 import com.base.remiany.remianlibrary.utils.Log;
 
 import java.text.SimpleDateFormat;

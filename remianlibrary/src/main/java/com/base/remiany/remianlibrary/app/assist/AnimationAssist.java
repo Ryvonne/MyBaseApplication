@@ -1,4 +1,4 @@
-package com.base.remiany.remianlibrary.assist;
+package com.base.remiany.remianlibrary.app.assist;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
