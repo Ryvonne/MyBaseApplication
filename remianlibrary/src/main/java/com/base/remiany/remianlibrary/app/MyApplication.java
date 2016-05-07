@@ -2,9 +2,6 @@ package com.base.remiany.remianlibrary.app;
 
 import android.app.Application;
 
-import com.base.remiany.remianlibrary.utils.CrashHandler;
-
-
 public class MyApplication extends Application {
     private static MyApplication instance;
 

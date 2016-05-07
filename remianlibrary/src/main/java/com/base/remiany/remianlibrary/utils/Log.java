@@ -1,6 +1,8 @@
 package com.base.remiany.remianlibrary.utils;
 
 
+import com.base.remiany.remianlibrary.app.Environment;
+
 /**
  * Created by wangxiaoyan on 15/4/20.
  */

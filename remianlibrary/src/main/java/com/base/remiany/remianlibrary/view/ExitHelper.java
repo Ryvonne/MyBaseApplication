@@ -1,4 +1,4 @@
-package com.base.remiany.remianlibrary.utils;
+package com.base.remiany.remianlibrary.view;
 
 import android.app.Activity;
 import android.app.AlertDialog;

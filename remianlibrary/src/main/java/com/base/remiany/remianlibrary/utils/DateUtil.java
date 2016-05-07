@@ -8,8 +8,30 @@ public class DateUtil {
     static Calendar mCalendar = Calendar.getInstance();
     static SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    public static String getDate() {
+    /**
+     * 返回当前时间的默认格式（yyyy-MM-dd HH:mm:ss）
+     * @return
+     */
+    public static String getStringDate() {
         return mFormat.format(new Date());
+    }
+
+    /**
+     * 返回当前时间的指定格式
+     * @param format
+     * @return
+     */
+    public static String getDate(String format) {
+        SimpleDateFormat dateformat = new SimpleDateFormat(format);
+        return dateformat.format(new Date());
+    }
+
+    /**
+     * 获取当前时间
+     * @return
+     */
+    public static Date getDate() {
+        return new Date();
     }
 
     /**

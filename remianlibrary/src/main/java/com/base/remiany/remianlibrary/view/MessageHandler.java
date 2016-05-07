@@ -1,28 +1,41 @@
-package com.base.remiany.remianlibrary.utils;
+package com.base.remiany.remianlibrary.view;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.os.Handler;
 import android.os.Message;
+import android.widget.Toast;
 
-public class HandlerMessageManger {
+public class MessageHandler extends Handler {
+    public static final int TOAST_MSG = 921;
+    public static final int DIALOG_SHOW_MSG = 922;
+    public static final int DIALOG_DISMISS_MSG = 923;
     private ProgressDialog mpd;
-    OnHanderMessageListener mListener;
     Activity mContext;
 
-    public HandlerMessageManger(Activity mContext) {
+    public MessageHandler(Activity mContext) {
         this.mContext = mContext;
     }
 
-    public void handlerMessage(Message msg) {
+    @Override
+    public void handleMessage(Message msg) {
+        Object om = msg.obj;
         switch (msg.what) {
-            case 1:
+            case TOAST_MSG:
+                if(om instanceof String) {
+                    Toast.makeText(mContext,(String)om,Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case DIALOG_SHOW_MSG:
+                if(om instanceof String) {
+                    showProgres((String) om,true);
+                }
+                break;
+            case DIALOG_DISMISS_MSG:
+                showProgres(null,false);
                 break;
             default:
                 break;
-        }
-
-        if (mListener != null) {
-            mListener.handlerMsg(msg);
         }
     }
 
@@ -44,7 +57,7 @@ public class HandlerMessageManger {
     }
 
     private void dismissProgressDialog() {
-        if (mpd != null && !mContext.isFinishing()) {
+        if (mpd != null && !isFinish()) {
             mpd.dismiss();
         }
     }
@@ -62,15 +75,12 @@ public class HandlerMessageManger {
         }
     }
 
-    public OnHanderMessageListener getOnHanderMessageListener() {
-        return mListener;
-    }
-
-    public void setOnHanderMessageListener(OnHanderMessageListener mListener) {
-        this.mListener = mListener;
-    }
-
-    interface OnHanderMessageListener {
-        void handlerMsg(Message msg);
+    /**
+     * If Activity is finish,can't run UI Thread
+     *
+     * @return
+     */
+    private boolean isFinish() {
+        return mContext.isFinishing();
     }
 }

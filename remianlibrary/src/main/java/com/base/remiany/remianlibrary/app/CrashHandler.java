@@ -1,22 +1,30 @@
-package com.base.remiany.remianlibrary.utils;
+package com.base.remiany.remianlibrary.app;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Looper;
 
 import com.base.remiany.remianlibrary.file.StorageHelper;
+import com.base.remiany.remianlibrary.utils.DateUtil;
+import com.base.remiany.remianlibrary.utils.StringUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;
 
+/**
+ * Created by lxl on 2015/11/29.
+ */
 public class CrashHandler implements Thread.UncaughtExceptionHandler {
     private static String PATH;
     private Context mContext;
+    private String mVer;
 
     /**
      * 是否开启日志输出,在Debug状态下开启,
      * 在Release状态下关闭以提示程序性能
      */
-    public static final boolean DEBUG = true;
+    public static final boolean DEBUG = false;
     /**
      * 系统默认的UncaughtException处理类
      */
@@ -54,6 +62,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
      */
     public void init(Context ctx) {
         mContext = ctx;
+        mVer = "" + getAppVersionName(ctx);
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
         Thread.setDefaultUncaughtExceptionHandler(this);
     }
@@ -89,7 +98,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         if (ex == null) {
             return false;
         }
-
+//        final String msg = ex.getLocalizedMessage();
         final StackTraceElement[] stack = ex.getStackTrace();
         final String message = ex.getMessage();
         //使用Toast来显示异常信息
@@ -97,9 +106,9 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             @Override
             public void run() {
                 Looper.prepare();
-                String date = DateUtil.getDate();
-                String ver = Environment.versionName();
-                String fileName = "crash-" + date + ver + ".log";
+//                Toast.makeText(mContext, "程序出错啦:" + message, Toast.LENGTH_LONG).show();
+//                可以只创建一个文件，以后全部往里面append然后发送，这样就会有重复的信息，个人不推荐
+                String fileName = "crash-" + DateUtil.getDate() + mVer + ".log";
                 File file = new File(StorageHelper.getAppLogDir(), fileName);
                 try {
                     FileOutputStream fos = new FileOutputStream(file, true);
@@ -116,6 +125,24 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
         }.start();
         return false;
+    }
+
+    public double getAppVersionName(Context cont) {
+        String versionName = "";
+        try {
+            // ---get the package info---
+            PackageManager pm = cont.getPackageManager();
+            PackageInfo pi = pm.getPackageInfo(cont.getPackageName(), 0);
+            versionName = pi.versionName;
+
+            if (StringUtil.isDecimal(versionName)) {
+                return Double.valueOf(versionName);
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
     }
 
     // TODO 使用HTTP Post 发送错误报告到服务器  这里不再赘述

@@ -1,4 +1,4 @@
-package com.base.remiany.remianlibrary.utils;
+package com.base.remiany.remianlibrary.app;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,6 +9,7 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
 import com.base.remiany.remianlibrary.app.MyApplication;
+import com.base.remiany.remianlibrary.utils.Log;
 
 import java.io.File;
 import java.io.FileInputStream;
