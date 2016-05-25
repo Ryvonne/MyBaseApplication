@@ -2,28 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.base.remiany.remianlibrary.view.MainActivity">
-
-    <LinearLayout
-        android:orientation="vertical"
+    tools:context="com.base.remiany.mybaseapplication.activity.MainActivity">
+    <android.support.v4.widget.DrawerLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <Button
-        android:id="@+id/btn_add"
-        android:text="add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btn_del"
-        android:text="del"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <include layout="@layout/drawer_title_list"
+            android:layout_gravity="left"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </include>
 
-        <TextView
-            android:id="@+id/tv_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
+    </android.support.v4.widget.DrawerLayout>
 </RelativeLayout>

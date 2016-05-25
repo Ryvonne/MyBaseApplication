@@ -1,1 +1,1 @@
-include ':app', ':remianlibrary'
+include ':app'
